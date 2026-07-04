@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OptiCrop: Smart Agricultural Production Optimization Engine">
+    <title>OptiCrop | Smart Crop Recommendation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
+    <main class="container">
+        <header class="header">
+            <h1 class="title">OptiCrop</h1>
+            <p class="subtitle">Smart Agricultural Production Optimization Engine</p>
+        </header>
+
+        <section class="glass-panel">
+            <div class="form-container">
+                <h2>Enter Soil & Environment Data</h2>
+                <form id="prediction-form">
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="N">Nitrogen (N)</label>
+                            <input type="number" step="0.1" id="N" name="N" required placeholder="e.g. 90">
+                        </div>
+                        <div class="input-group">
+                            <label for="P">Phosphorus (P)</label>
+                            <input type="number" step="0.1" id="P" name="P" required placeholder="e.g. 42">
+                        </div>
+                        <div class="input-group">
+                            <label for="K">Potassium (K)</label>
+                            <input type="number" step="0.1" id="K" name="K" required placeholder="e.g. 43">
+                        </div>
+                        <div class="input-group">
+                            <label for="temperature">Temperature (°C)</label>
+                            <input type="number" step="0.1" id="temperature" name="temperature" required placeholder="e.g. 20.8">
+                        </div>
+                        <div class="input-group">
+                            <label for="humidity">Humidity (%)</label>
+                            <input type="number" step="0.1" id="humidity" name="humidity" required placeholder="e.g. 82">
+                        </div>
+                        <div class="input-group">
+                            <label for="ph">Soil pH</label>
+                            <input type="number" step="0.1" id="ph" name="ph" required placeholder="e.g. 6.5">
+                        </div>
+                        <div class="input-group">
+                            <label for="rainfall">Rainfall (mm)</label>
+                            <input type="number" step="0.1" id="rainfall" name="rainfall" required placeholder="e.g. 202">
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Get Recommendation</button>
+                </form>
+            </div>
+            
+            <div class="result-container" id="result-box">
+                <div class="spinner" id="loading-spinner"></div>
+                <div id="result-content" class="hidden">
+                    <h3>Recommended Crop</h3>
+                    <div class="crop-badge" id="predicted-crop">-</div>
+                    <p class="result-desc">Based on the provided environmental parameters, this crop is expected to yield the best results.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            const resultContent = document.getElementById('result-content');
+            const spinner = document.getElementById('loading-spinner');
+            const resultBox = document.getElementById('result-box');
+            
+            resultBox.classList.add('active');
+            spinner.style.display = 'block';
+            resultContent.classList.add('hidden');
+            
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                spinner.style.display = 'none';
+                resultContent.classList.remove('hidden');
+                
+                if (result.error) {
+                    document.getElementById('predicted-crop').innerText = "Error: " + result.error;
+                    document.getElementById('predicted-crop').style.background = "linear-gradient(135deg, #ff4d4d, #b30000)";
+                } else {
+                    document.getElementById('predicted-crop').innerText = result.prediction;
+                    document.getElementById('predicted-crop').style.background = "linear-gradient(135deg, #00f2fe, #4facfe)";
+                }
+            } catch (error) {
+                spinner.style.display = 'none';
+                resultContent.classList.remove('hidden');
+                document.getElementById('predicted-crop').innerText = "Connection Error";
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
