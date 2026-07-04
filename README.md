@@ -28,30 +28,39 @@ The project **Smart Agricultural Production Optimization Engine (OptiCrop)** aim
    git clone https://github.com/DeepakJaggupalli/Opticrop.git
    cd Opticrop
    ```
-2. **Install the dependencies:**
+2. **Navigate to the Development folder:**
    ```bash
-   pip install pandas numpy scikit-learn matplotlib seaborn flask joblib
+   cd "5. Project Development Phase"
    ```
-3. **Train the Model (Optional, model is pre-trained):**
+3. **Install the dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Train the Model (Optional, model is pre-trained):**
    ```bash
    python model_pipeline.py
    ```
-4. **Run the Application:**
+5. **Run the Application:**
    ```bash
    python app.py
    ```
-5. **Access the Application:**
+6. **Access the Application:**
    Open a web browser and go to `http://127.0.0.1:5000/`
 
-## Project Status
+## Vercel Deployment Notes
+When deploying to Vercel, make sure to set the **Root Directory** in the Vercel project settings to `5. Project Development Phase` so it can find the `vercel.json` and `app.py`.
 
-This repository fulfills all the Epics and tasks defined in the project board:
-- `ER_Diagram.md`: Entity Relationship documentation
-- `Business_Requirements.md`: Business requirements and problem definition
-- `Project_Flow.md`: Complete workflow diagram
-- `model_pipeline.py`: Comprehensive Exploratory Data Analysis (EDA) and Model building pipeline
-- `app.py`: Backend Flask application serving ML models
-- `templates/` & `static/`: High-end CSS & HTML interface for interacting with the engine.
+## Project Structure
+
+This repository follows the structured AI/ML Track template:
+- `1. Brainstorming & Ideation/`
+- `2. Requirement Analysis/`: Business requirements and problem definition
+- `3. Project Design Phase/`: Entity Relationship and Workflow diagrams
+- `4. Project Planning Phase/`
+- `5. Project Development Phase/`: All source code, models, UI (`app.py`, HTML/CSS), and dataset
+- `6.Project Testing/`
+- `7.Project Documentation/`
+- `8.Project Demonstration/`
 
 ## Authors
 - **Team Lead:** Deepak Jaggupalli
