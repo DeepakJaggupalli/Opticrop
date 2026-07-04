@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OptiCrop: Smart Agricultural Production Optimization Engine">
+    <title>OptiCrop | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="landing-page">
+    <div class="background-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" data-aos="fade-down" data-aos-duration="1000">
+        <div class="logo">OptiCrop<span>.</span></div>
+        <a href="/tool" class="nav-btn">Launch App</a>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+                <h1 class="hero-title">Optimize Your Harvest with <span>AI</span></h1>
+                <p class="hero-subtitle">Make data-driven decisions for your farm. Input your soil and environmental data to receive instant, accurate crop recommendations.</p>
+                <div class="cta-buttons">
+                    <a href="/tool" class="primary-btn">Start Predicting Now</a>
+                    <a href="#features" class="secondary-btn">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="hero-image" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="200">
+                <div class="floating-card crop-card" style="top: 10%; left: 0;">
+                    <span class="icon">🌱</span>
+                    <div>
+                        <h4>High Yield</h4>
+                        <p>+30% Output</p>
+                    </div>
+                </div>
+                <div class="floating-card accuracy-card" style="bottom: 10%; right: 0; animation-delay: 1.5s;">
+                    <span class="icon">🎯</span>
+                    <div>
+                        <h4>Precision AI</h4>
+                        <p>97.2% Accuracy</p>
+                    </div>
+                </div>
+                <div class="glass-orb"></div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <h2 data-aos="fade-up">Why Choose OptiCrop?</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Soil Science</h3>
+                    <p>Analyzes Nitrogen, Phosphorus, Potassium, and pH levels to understand exact soil health.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">⛅</div>
+                    <h3>Climate Aware</h3>
+                    <p>Factors in regional temperature, humidity, and rainfall for robust environmental matching.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Machine Learning</h3>
+                    <p>Powered by an advanced Logistic Regression model trained on thousands of agricultural data points.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 OptiCrop. AI-ML Track Project.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
